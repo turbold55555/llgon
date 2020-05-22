@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .aldaa{
+    color: green; background-color: orange;padding: 10px; margin: 5px;
+    
+  }
+    </style>
+</head>
+<body>
+    
+        <!-- <li> Apple</li> -->
+        <section class="container">
+            <form id="my-form">
+                <div class="err"></div>
+            <label for=""> Хэрэглэгчийн нэр</label>
+            <input class="input1" type="text">
+            <br>
+            <label for=""> Хэрэглэгчийн Мэйл</label>
+            <input class="input2" type="text">
+            <button type="submit" class="btn"> нэмэх</button>
+            </form>
+        </section>
+       
+        <ul class="myList"></ul>
+    <script>
+
+        let btn =  document.querySelector('.btn');
+        let input1 = document.querySelector('.input1');
+        let input2 = document.querySelector('.input2');
+        let ulid = document.querySelector('.myList');
+
+        btn.addEventListener('click', add);
+         function add (e){
+             e.preventDefault();
+           let li= document.createElement('li');
+           if(input1.value ==="" || input2.value === "")
+           {
+            //    alert('уучлаарай таны оруулсан утга хоосон байна');
+               let err = document.querySelector('.err');
+               err.textContent='Талбар хоосон байна утга оруулна уу';
+               err.classList.add('aldaa');
+               input1.value ='';
+               input2.value ='';
+            //    setTimeout(err.textContent ='', 6);
+               setTimeout(err.classList.remove(), 6);
+               
+           } else if (checkEmail(input2.value) === false) {
+                
+                    let err = document.querySelector('.err');
+                     err.textContent='Уучлаарай таны оруулсан мэйл хаяг буруу байна';
+                     err.classList.add('aldaa');
+            
+          
+        //   err.remove(), 
+           input1.value ='';
+          input2.value ='';
+           } 
+           else {
+            li.textContent = `${input1.value} ийн мэйл нь : ${input2.value}  байна`;
+          ulid.appendChild(li);
+          input1.value ='';
+          input2.value ='';
+           }
+           
+         }
+         function checkEmail(email){
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+         }
+         console.log(checkEmail('sdfds'));
+
+    </script>
+</body>
+</html>
+
+<!--  id aar avch bgaa tohioldold # bichihgui -->
